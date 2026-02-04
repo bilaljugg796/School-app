@@ -21,6 +21,8 @@ services:
     restart: always
     ports:
       - "3500:3500"
+    env_file:
+      - .env            # 🔥 THIS LINE FIXES EVERYTHING
     depends_on:
       - db
     networks:
