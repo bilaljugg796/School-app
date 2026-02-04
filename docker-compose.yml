@@ -12,26 +12,33 @@ services:
       MYSQL_PASSWORD: schoolpass
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - school-net
 
   backend:
-    build: ./backend
-    container_name: backend
-    env_file:
-      - .env
+    image: bilaljugg796/school-app-backend:latest
+    container_name: school-backend
+    restart: always
     ports:
       - "3500:3500"
     depends_on:
       - db
-    restart: always
+    networks:
+      - school-net
 
   frontend:
-    build: ./frontend
-    container_name: frontend
+    image: bilaljugg796/school-app-frontend:latest
+    container_name: school-frontend
+    restart: always
     ports:
       - "80:80"
     depends_on:
       - backend
-    restart: always
+    networks:
+      - school-net
 
 volumes:
   db_data:
+
+networks:
+  school-net:
