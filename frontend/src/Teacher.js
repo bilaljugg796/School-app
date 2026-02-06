@@ -12,7 +12,7 @@ function Teacher() {
 
   const [data, setData]= useState([])
 
-  const API_BASE_URL = "http://192.168.18.18:3500/api";
+  const API_BASE_URL = "http://backend:3500/api";
 
   const getData=()=> {
     fetch(`${API_BASE_URL}/teacher`)
